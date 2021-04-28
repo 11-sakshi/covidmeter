@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class='header orbitron text-danger'>Coronameter</h1>
+        <p class="lead text-white">Last Updated <span class='text-success orbitron' id='last-updated-date'></span></p>
+        <br>
+        <div class="row">
+            <div class="container col">
+                <h2 class='text-secondary'>Total Confirmed:</h2>
+                <h2 class='orbitron text-white' id='total-cases'></h2>
+            </div>
+            <div class="container col">
+                <h2 class='text-danger'>New Confirmed:</h2>
+                <h2 class='orbitron text-white' id='new-cases'></h2>
+            </div>
+            <div class="container col">
+                <h2 class='text-secondary'>Total Deaths:</h2>
+                <h2 class='orbitron text-white' id='total-deaths'></h2>
+            </div>
+            <div class="container col">
+                <h2 class='text-danger'>New Deaths:</h2>
+                <h2 class='orbitron text-white' id='new-deaths'></h2>
+            </div>
+            <div class="container col">
+                <h2 class='text-secondary'>Total Recovered:</h2>
+                <h2 class='orbitron text-white' id='total-recovered'></h2>
+            </div>
+            <div class="container col">
+                <h2 class='text-danger'>New Recovered:</h2>
+                <h2 class='orbitron text-white' id='new-recovered'></h2>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class='table mt-3'>
+                <thead class='bg-light'>
+                    <tr>
+                        <th scope='col' class='orbitron'>#</th>
+                        <th scope='col' class='orbitron text-danger text-danger'>Country</th>
+                        <th scope='col' class='orbitron text-secondary'>Total Confirmed</th>
+                        <th scope='col' class='orbitron text-danger'>New Confirmed</th>
+                        <th scope='col' class='orbitron text-secondary'>Total Deaths</th>
+                        <th scope='col' class='orbitron text-danger'>New Deaths</th>
+                        <th scope='col' class='orbitron text-secondary'>Total Recovered</th>
+                        <th scope='col' class='orbitron text-danger'>New Recovered</th>
+                    </tr>
+                </thead>
+    
+                <tbody id='country-wise-data' class="text-white">
+                    
+                </tbody>
+            </table>
+        </div>
+        
+        
+    </div>
+    
+    <script src="{% static 'main.js' %}"></script>
+</body>
+</html>
