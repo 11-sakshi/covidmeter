@@ -1,1 +1,1 @@
-web:gunicorn covidmeter.wsgi
+web: gunicorn covidmeter.wsgi
