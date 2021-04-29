@@ -42,13 +42,13 @@ function commaSeperatedInteger(num) {
 fetch(url)
 .then(response => response.json())
 .then(data => {
-    lastUpdatedDate.innerHTML = data.Date
-    totalCasesCount.innerHTML = commaSeperatedInteger(data['Global']['TotalConfirmed'])
-    newCasesCount.innerHTML = commaSeperatedInteger(data['Global']['NewConfirmed'])
-    totalDeathsCount.innerHTML = commaSeperatedInteger(data['Global']['TotalDeaths'])
-    newDeathsCount.innerHTML = commaSeperatedInteger(data['Global']['NewDeaths'])
-    totalRecoveredCount.innerHTML = commaSeperatedInteger(data['Global']['TotalRecovered'])
-    newRecoveredCount.innerHTML = commaSeperatedInteger(data['Global']['NewRecovered'])
+    // lastUpdatedDate.innerHTML = data.Date
+    // totalCasesCount.innerHTML = commaSeperatedInteger(data['Global']['TotalConfirmed'])
+    // newCasesCount.innerHTML = commaSeperatedInteger(data['Global']['NewConfirmed'])
+    // totalDeathsCount.innerHTML = commaSeperatedInteger(data['Global']['TotalDeaths'])
+    // newDeathsCount.innerHTML = commaSeperatedInteger(data['Global']['NewDeaths'])
+    // totalRecoveredCount.innerHTML = commaSeperatedInteger(data['Global']['TotalRecovered'])
+    // newRecoveredCount.innerHTML = commaSeperatedInteger(data['Global']['NewRecovered'])
 
     checkButton.addEventListener('click', () => { displayCountryData(data, countryInput.value) })
 

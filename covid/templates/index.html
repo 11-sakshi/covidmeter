@@ -29,27 +29,27 @@
         <div class="row">
             <div class="container col-md-2">
                 <h2 class='text-secondary'>Total Confirmed:</h2>
-                <h2 class='orbitron text-white' id='total-cases'></h2>
+                <h2 class='orbitron text-white' id='total-cases'>{{ data.Global.TotalConfirmed|intcomma }}</h2>
             </div>
             <div class="container col-md-2">
                 <h2 class='text-danger'>New Confirmed:</h2>
-                <h2 class='orbitron text-white' id='new-cases'></h2>
+                <h2 class='orbitron text-white' id='new-cases'>{{ data.Global.NewConfirmed|intcomma }}</h2>
             </div>
             <div class="container col-md-2">
                 <h2 class='text-secondary'>Total Deaths:</h2>
-                <h2 class='orbitron text-white' id='total-deaths'></h2>
+                <h2 class='orbitron text-white' id='total-deaths'>{{ data.Global.TotalDeaths|intcomma }}</h2>
             </div>
             <div class="container col-md-2">
                 <h2 class='text-danger'>New Deaths:</h2>
-                <h2 class='orbitron text-white' id='new-deaths'></h2>
+                <h2 class='orbitron text-white' id='new-deaths'>{{ data.Global.NewDeaths|intcomma }}</h2>
             </div>
             <div class="container col-md-2">
                 <h2 class='text-secondary'>Total Recovered:</h2>
-                <h2 class='orbitron text-white' id='total-recovered'></h2>
+                <h2 class='orbitron text-white' id='total-recovered'>{{ data.Global.TotalRecovered|intcomma }}</h2>
             </div>
             <div class="container col-md-2">
                 <h2 class='text-danger'>New Recovered:</h2>
-                <h2 class='orbitron text-white' id='new-recovered'></h2>
+                <h2 class='orbitron text-white' id='new-recovered'>{{ data.Global.NewRecovered|intcomma }}</h2>
             </div>
         </div>
         <br>
