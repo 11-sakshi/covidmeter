@@ -8,16 +8,20 @@ const totalRecoveredCount = document.getElementById('total-recovered')
 const newRecoveredCount = document.getElementById('new-recovered')
 const countryWiseData = document.getElementById('country-wise-data')
 
+function commaSeperatedInteger(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+}
+
 fetch(url)
 .then(response => response.json())
 .then(data => {
     lastUpdatedDate.innerHTML = data.Date
-    totalCasesCount.innerHTML = data['Global']['TotalConfirmed']
-    newCasesCount.innerHTML = data['Global']['NewConfirmed']
-    totalDeathsCount.innerHTML = data['Global']['TotalDeaths']
-    newDeathsCount.innerHTML = data['Global']['NewDeaths']
-    totalRecoveredCount.innerHTML = data['Global']['TotalRecovered']
-    newRecoveredCount.innerHTML = data['Global']['NewRecovered']
+    totalCasesCount.innerHTML = commaSeperatedInteger(data['Global']['TotalConfirmed'])
+    newCasesCount.innerHTML = commaSeperatedInteger(data['Global']['NewConfirmed'])
+    totalDeathsCount.innerHTML = commaSeperatedInteger(data['Global']['TotalDeaths'])
+    newDeathsCount.innerHTML = commaSeperatedInteger(data['Global']['NewDeaths'])
+    totalRecoveredCount.innerHTML = commaSeperatedInteger(data['Global']['TotalRecovered'])
+    newRecoveredCount.innerHTML = commaSeperatedInteger(data['Global']['NewRecovered'])
 
 //     for (let i=0; i<data['Countries'].length; i++) {
 //         countryWiseData.innerHTML += "<tr class='orbitron'>"+

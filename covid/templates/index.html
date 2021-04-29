@@ -1,4 +1,6 @@
 {% load static %}
+{% load humanize %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,12 +71,12 @@
                         <tr>
                             <td scope='col' class='orbitron'>{{ forloop.counter }}</td>
                             <td scope='col' class='orbitron text-danger text-danger'>{{ country.Country }}</td>
-                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalConfirmed }}</td>
-                            <td scope='col' class='orbitron text-danger'>{{ country.NewConfirmed }}</td>
-                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalDeaths }}</td>
-                            <td scope='col' class='orbitron text-danger'>{{ country.NewDeaths }}</td>
-                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalRecovered }}</td>
-                            <td scope='col' class='orbitron text-danger'>{{ country.NewRecovered }}</td>
+                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalConfirmed|intcomma }}</td>
+                            <td scope='col' class='orbitron text-danger'>{{ country.NewConfirmed|intcomma }}</td>
+                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalDeaths|intcomma }}</td>
+                            <td scope='col' class='orbitron text-danger'>{{ country.NewDeaths|intcomma }}</td>
+                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalRecovered|intcomma }}</td>
+                            <td scope='col' class='orbitron text-danger'>{{ country.NewRecovered|intcomma }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
