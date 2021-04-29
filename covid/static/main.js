@@ -19,16 +19,16 @@ fetch(url)
     totalRecoveredCount.innerHTML = data['Global']['TotalRecovered']
     newRecoveredCount.innerHTML = data['Global']['NewRecovered']
 
-    for (let i=0; i<data['Countries'].length; i++) {
-        countryWiseData.innerHTML += "<tr class='orbitron'>"+
-        "<td>"+(i+1)+"</td>"+
-        "<td>"+data['Countries'][i]['Country']+"</td>"+
-        "<td>"+data['Countries'][i]['TotalConfirmed']+"</td>"+
-        "<td>"+data['Countries'][i]['NewConfirmed']+"</td>"+
-        "<td>"+data['Countries'][i]['TotalDeaths']+"</td>"+
-        "<td>"+data['Countries'][i]['NewDeaths']+"</td>"+
-        "<td>"+data['Countries'][i]['TotalRecovered']+"</td>"+
-        "<td>"+data['Countries'][i]['NewRecovered']+"</td>"
-        +"</tr>"      
-    }
+//     for (let i=0; i<data['Countries'].length; i++) {
+//         countryWiseData.innerHTML += "<tr class='orbitron'>"+
+//         "<td>"+(i+1)+"</td>"+
+//         "<td>"+data['Countries'][i]['Country']+"</td>"+
+//         "<td>"+data['Countries'][i]['TotalConfirmed']+"</td>"+
+//         "<td>"+data['Countries'][i]['NewConfirmed']+"</td>"+
+//         "<td>"+data['Countries'][i]['TotalDeaths']+"</td>"+
+//         "<td>"+data['Countries'][i]['NewDeaths']+"</td>"+
+//         "<td>"+data['Countries'][i]['TotalRecovered']+"</td>"+
+//         "<td>"+data['Countries'][i]['NewRecovered']+"</td>"
+//         +"</tr>"      
+//     }
 })

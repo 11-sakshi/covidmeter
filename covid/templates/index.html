@@ -19,32 +19,32 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <h1 class='header orbitron text-danger'>Coronameter</h1>
-        <p class="lead text-white">Last Updated <span class='text-success orbitron' id='last-updated-date'></span></p>
+        <p class="lead text-white">Last Updated <span class='text-success orbitron' id='last-updated-date'>{{ data.Date }}</span></p>
         <br>
         <div class="row">
-            <div class="container col">
+            <div class="container col-md-2">
                 <h2 class='text-secondary'>Total Confirmed:</h2>
                 <h2 class='orbitron text-white' id='total-cases'></h2>
             </div>
-            <div class="container col">
+            <div class="container col-md-2">
                 <h2 class='text-danger'>New Confirmed:</h2>
                 <h2 class='orbitron text-white' id='new-cases'></h2>
             </div>
-            <div class="container col">
+            <div class="container col-md-2">
                 <h2 class='text-secondary'>Total Deaths:</h2>
                 <h2 class='orbitron text-white' id='total-deaths'></h2>
             </div>
-            <div class="container col">
+            <div class="container col-md-2">
                 <h2 class='text-danger'>New Deaths:</h2>
                 <h2 class='orbitron text-white' id='new-deaths'></h2>
             </div>
-            <div class="container col">
+            <div class="container col-md-2">
                 <h2 class='text-secondary'>Total Recovered:</h2>
                 <h2 class='orbitron text-white' id='total-recovered'></h2>
             </div>
-            <div class="container col">
+            <div class="container col-md-2">
                 <h2 class='text-danger'>New Recovered:</h2>
                 <h2 class='orbitron text-white' id='new-recovered'></h2>
             </div>
@@ -65,7 +65,18 @@
                 </thead>
     
                 <tbody id='country-wise-data' class="text-white">
-                    
+                    {% for country in countries %}
+                        <tr>
+                            <td scope='col' class='orbitron'>{{ forloop.counter }}</td>
+                            <td scope='col' class='orbitron text-danger text-danger'>{{ country.Country }}</td>
+                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalConfirmed }}</td>
+                            <td scope='col' class='orbitron text-danger'>{{ country.NewConfirmed }}</td>
+                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalDeaths }}</td>
+                            <td scope='col' class='orbitron text-danger'>{{ country.NewDeaths }}</td>
+                            <td scope='col' class='orbitron text-secondary'>{{ country.TotalRecovered }}</td>
+                            <td scope='col' class='orbitron text-danger'>{{ country.NewRecovered }}</td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
