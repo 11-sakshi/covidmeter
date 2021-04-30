@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid">
+        <input type="text" class="form-control col-md-14" id='searchInput' placeholder="Search for article here...">
+        <button class="btn btn-danger m-1" id='search'><ion-icon name="search-sharp"></ion-icon>
+        </button>
+    </div>
+    <div id="result" class='text-white container-fluid'>
+
+    </div>
+{% endblock %}

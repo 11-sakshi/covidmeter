@@ -10,3 +10,6 @@ def home(request):
         'countries': countries
     }
     return render(request, 'index.html', context=context)
+
+def blog(request):
+    return render(request, 'blog.html')
