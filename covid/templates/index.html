@@ -43,7 +43,9 @@
                 <button class="btn btn-danger col-md-1 ml-2" id='check'>Check</button>
             </div>
         </div>
-        <br>
+        <div class="chart-container container">
+            <canvas id='myChart' class='d-none'></canvas>            
+        </div>
         <div class="row d-none" id="result">
             <div class="container overflow-hidden col-md-2">
                 <h2 class='text-secondary'>Total Confirmed:</h2>
@@ -71,6 +73,7 @@
             </div>
         </div>
     </div>
+
     <br>
     <div class="table-responsive">
         <table class='table mt-3'>
@@ -86,7 +89,6 @@
                     <th scope='col' class='orbitron text-danger'>New Recovered</th>
                 </tr>
             </thead>
-
             <tbody id='country-wise-data' class="text-white">
                 {% for country in countries %}
                     <tr>
