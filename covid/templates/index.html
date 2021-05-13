@@ -1,78 +1,112 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+{% load humanize %}
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container text-center">
-        <h1 class='header orbitron text-danger'>Coronameter</h1>
-        <p class="lead text-white">Last Updated <span class='text-success orbitron' id='last-updated-date'></span></p>
-        <br>
-        <div class="row">
-            <div class="container col">
-                <h2 class='text-secondary'>Total Confirmed:</h2>
-                <h2 class='orbitron text-white' id='total-cases'></h2>
-            </div>
-            <div class="container col">
-                <h2 class='text-danger'>New Confirmed:</h2>
-                <h2 class='orbitron text-white' id='new-cases'></h2>
-            </div>
-            <div class="container col">
-                <h2 class='text-secondary'>Total Deaths:</h2>
-                <h2 class='orbitron text-white' id='total-deaths'></h2>
-            </div>
-            <div class="container col">
-                <h2 class='text-danger'>New Deaths:</h2>
-                <h2 class='orbitron text-white' id='new-deaths'></h2>
-            </div>
-            <div class="container col">
-                <h2 class='text-secondary'>Total Recovered:</h2>
-                <h2 class='orbitron text-white' id='total-recovered'></h2>
-            </div>
-            <div class="container col">
-                <h2 class='text-danger'>New Recovered:</h2>
-                <h2 class='orbitron text-white' id='new-recovered'></h2>
-            </div>
+{% block content %}
+    <p class="lead text-white">Last Updated <span class='text-success orbitron' id='last-updated-date'>{{ data.Date }}</span></p>
+    <div class="row">
+        <div class="container overflow-hidden col-md-2">
+            <h2 class='text-secondary'>Total Confirmed:</h2>
+            <h2 class='orbitron text-white' id='total-cases'>{{ data.Global.TotalConfirmed|intcomma }}</h2>
         </div>
-        <div class="table-responsive">
-            <table class='table mt-3'>
-                <thead class='bg-light'>
-                    <tr>
-                        <th scope='col' class='orbitron'>#</th>
-                        <th scope='col' class='orbitron text-danger text-danger'>Country</th>
-                        <th scope='col' class='orbitron text-secondary'>Total Confirmed</th>
-                        <th scope='col' class='orbitron text-danger'>New Confirmed</th>
-                        <th scope='col' class='orbitron text-secondary'>Total Deaths</th>
-                        <th scope='col' class='orbitron text-danger'>New Deaths</th>
-                        <th scope='col' class='orbitron text-secondary'>Total Recovered</th>
-                        <th scope='col' class='orbitron text-danger'>New Recovered</th>
-                    </tr>
-                </thead>
-    
-                <tbody id='country-wise-data' class="text-white">
-                    
-                </tbody>
-            </table>
+        <div class="container overflow-hidden col-md-2">
+            <h2 class='text-danger'>New Confirmed:</h2>
+            <h2 class='orbitron text-white' id='new-cases'>{{ data.Global.NewConfirmed|intcomma }}</h2>
         </div>
-        
-        
+        <div class="container overflow-hidden col-md-2">
+            <h2 class='text-secondary'>Total Deaths:</h2>
+            <h2 class='orbitron text-white' id='total-deaths'>{{ data.Global.TotalDeaths|intcomma }}</h2>
+        </div>
+        <div class="container overflow-hidden col-md-2">
+            <h2 class='text-danger'>New Deaths:</h2>
+            <h2 class='orbitron text-white' id='new-deaths'>{{ data.Global.NewDeaths|intcomma }}</h2>
+        </div>
+        <div class="container overflow-hidden col-md-2">
+            <h2 class='text-secondary'>Total Recovered:</h2>
+            <h2 class='orbitron text-white' id='total-recovered'>{{ data.Global.TotalRecovered|intcomma }}</h2>
+        </div>
+        <div class="container overflow-hidden col-md-2">
+            <h2 class='text-danger'>New Recovered:</h2>
+            <h2 class='orbitron text-white' id='new-recovered'>{{ data.Global.NewRecovered|intcomma }}</h2>
+        </div>
     </div>
-    
+    <br>
+    <div>
+        <div class="container">
+            <div class="row">
+                <select class='form-select form-control col-md-10' id='country-input'>
+                    <option value="" disabled selected='true'>Choose the Country</option>
+                    {% for country in countries %}
+                        <option value="{{ country.Country }}">{{ country.Country }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-danger col-md-1 ml-2" id='check'>Check</button>
+            </div>
+        </div>
+        <div class="chart-container container">
+            <canvas id='myChart' class='d-none'></canvas>            
+        </div>
+        <div class="row d-none" id="result">
+            <div class="container overflow-hidden col-md-2">
+                <h2 class='text-secondary'>Total Confirmed:</h2>
+                <h2 class='orbitron text-white' id='result-total-cases'></h2>
+            </div>
+            <div class="container overflow-hidden col-md-2">
+                <h2 class='text-danger'>New Confirmed:</h2>
+                <h2 class='orbitron text-white' id='result-new-cases'></h2>
+            </div>
+            <div class="container overflow-hidden col-md-2">
+                <h2 class='text-secondary'>Total Deaths:</h2>
+                <h2 class='orbitron text-white' id='result-total-deaths'></h2>
+            </div>
+            <div class="container overflow-hidden col-md-2">
+                <h2 class='text-danger'>New Deaths:</h2>
+                <h2 class='orbitron text-white' id='result-new-deaths'></h2>
+            </div>
+            <div class="container overflow-hidden col-md-2">
+                <h2 class='text-secondary'>Total Recovered:</h2>
+                <h2 class='orbitron text-white' id='result-total-recovered'></h2>
+            </div>
+            <div class="container overflow-hidden col-md-2">
+                <h2 class='text-danger'>New Recovered:</h2>
+                <h2 class='orbitron text-white' id='result-new-recovered'></h2>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="table-responsive">
+        <table class='table mt-3'>
+            <thead class='bg-light'>
+                <tr>
+                    <th scope='col' class='orbitron'>#</th>
+                    <th scope='col' class='orbitron text-danger text-danger'>Country</th>
+                    <th scope='col' class='orbitron text-secondary'>Total Confirmed</th>
+                    <th scope='col' class='orbitron text-danger'>New Confirmed</th>
+                    <th scope='col' class='orbitron text-secondary'>Total Deaths</th>
+                    <th scope='col' class='orbitron text-danger'>New Deaths</th>
+                    <th scope='col' class='orbitron text-secondary'>Total Recovered</th>
+                    <th scope='col' class='orbitron text-danger'>New Recovered</th>
+                </tr>
+            </thead>
+            <tbody id='country-wise-data' class="text-white">
+                {% for country in countries %}
+                    <tr>
+                        <td scope='col' class='orbitron'>{{ forloop.counter }}</td>
+                        <td scope='col' class='orbitron text-danger text-danger'>{{ country.Country }}</td>
+                        <td scope='col' class='orbitron text-secondary'>{{ country.TotalConfirmed|intcomma }}</td>
+                        <td scope='col' class='orbitron text-danger'>{{ country.NewConfirmed|intcomma }}</td>
+                        <td scope='col' class='orbitron text-secondary'>{{ country.TotalDeaths|intcomma }}</td>
+                        <td scope='col' class='orbitron text-danger'>{{ country.NewDeaths|intcomma }}</td>
+                        <td scope='col' class='orbitron text-secondary'>{{ country.TotalRecovered|intcomma }}</td>
+                        <td scope='col' class='orbitron text-danger'>{{ country.NewRecovered|intcomma }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}
     <script src="{% static 'main.js' %}"></script>
-</body>
-</html>
+{% endblock %}
